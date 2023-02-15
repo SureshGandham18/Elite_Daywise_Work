@@ -28,3 +28,23 @@ class Solution {
 
     }
 }
+
+
+
+/*using dfs*/
+class Solution {
+    public void dfs(int i,int j,int[][] image,int k,int color){
+        if(i<0 || i>=image.length || j<0 || j>=image[0].length || image[i][j]==color || image[i][j]!=k) return;
+        image[i][j] = color;
+        dfs(i-1,j,image,k,color);
+        dfs(i+1,j,image,k,color);
+        dfs(i,j-1,image,k,color);
+        dfs(i,j+1,image,k,color);
+        return ;
+    }
+    public int[][] floodFill(int[][] image, int sr, int sc, int color) {
+        int k = image[sr][sc];
+        dfs(sr,sc,image,k,color);
+        return image;
+    }
+}
